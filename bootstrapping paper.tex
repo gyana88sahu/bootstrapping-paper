@@ -1,0 +1,700 @@
+
+
+
+
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath}
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/pkg/endfloat
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+\usepackage{ragged2e}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\begin{document}
+
+\title{Bootstrapping Standard-LWE Homomorphic Encryption}
+
+
+
+\author{Gyana Ranjan Sahu,~\IEEEmembership{Member,~IEEE,}       
+        and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Shell was with the Department
+of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
+GA, 30332.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: see http://www.michaelshell.org/contact.html
+\IEEEcompsocthanksitem J. Doe and J. Doe are with Anonymous University.}% <-this % stops an unwanted space
+\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}}
+
+
+% The paper headers
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+
+
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+\justify
+\quad Since the discovery of Gentry's first fully homomorphic scheme it has been a much sought topic in the field of Cyrptography. In brief, FHE is a scheme that allows one to evaluate arbitrary circuits over encrypted data without being able to decrypt. Gentry constructed the first FHE scheme by constructing a somewhat homomorphic encryption scheme in which the resulting ciphertext eventually gets noisy after the evaluation of the circuit. At this stage the ciphertext needs to be refreshed by the bootstrappping algorithm. Unfortunately, Gentry's bootstrapping technique is computationally very expensive, yielding an impractical run-time. The main bottleneck in bootstrapping arises from the need to evaluate homomorphically the decryption circuit. Over the past few years a number of bootstapping algorithms following Gentry's blueprint have been proposed and considerable work has been done to make them practical.   
+\\
+\quad One of the implementations reported in literature is that of Halevi-Shoup (Crypto 2014) in the open source library of HElib. Their work uses a packed ciphertext over field extentions with plaintext modulus p \textgreater \ 2.  To give an idea of the runtime they show that a packed vector of 1024 elements can be recrypted in under 5.5 minutes. In another remarkable work, Ducas-Micciancio presented their work on bootstrapping which computes simple bit operations. In their work they make use of a relatively small group element over cyclotomic rings and report a bootstrapping wall clock time of under a second. However, the reported scheme works over a bits with plaintext modulus of 2 and 4 and needs to be bootstrapped after every NAND gate evaluation.         
+\\
+\quad We propose an algorithm to bootstrap the standard LWE ciphertext which remedies some of the drawbacks of bootstrapping scheme proposed by Ducas and Micciancio. Standard LWE homomorphic scheme is based on  LWE  assumption which enjoys the worst-case hardness of ``short vector problems'' on arbitrary lattices. The salient feature of ciphertext is that they are defined for an arbitrary plaintext modulus p \textgreater \ 2 and bootstrapping is only needed when the ladded of moduli is exhausted during circuit evaluation.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+LWE, Bootstrapping.
+\end{IEEEkeywords}}
+
+
+% make the title area
+\maketitle
+
+
+
+\IEEEdisplaynontitleabstractindextext
+
+\IEEEpeerreviewmaketitle
+
+
+
+\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+
+
+
+\IEEEPARstart
+In recent years there has been a growing interest in the area of homomorphic encryption. In a nutshell, a fully homomorphic encryption scheme is an encryption scheme that allows evaluation of arbitrary depth function or circuit on encrypted data. The problem was first suggested by Rivest, Adleman and Dertouzos back in 1978. A number of encryption schemes were proposed which were partially homomorphic such as the encryption systems of Goldwasser and Micali [cite], El-Gamal [cite], Cohen and Fischer [cite], and Paillier [cite]. These schemes supported either adding or multiplying encrypted ciphertexts, but not both operations at the same time. The first scheme that supported both addition and multiplication of ciphertexts was that of Boneh-Goh-Nissim[cite]. However, the scheme could handle only one multiplication and multiple additions and hence not fully homomorphic. This problem remained an open problem until 2009 when Gentry[cite] in a breakthrough work showed the first construction of an encryption scheme capable of performing arbitrary number of additions and multiplications on encrypted data.
+
+Fully homomorphic encryption goes a long way in solving some of the key problems related to data privacy. In businesses and applications where data privacy is a major concern, the consumers or users may not be open to share their data. This is quite contrary to the current day scenario where businesses expect their users to upload their data onto cloud storage systems which may even be controlled by third party vendors. FHE schemes come a long way in remedying such situations by allowing the users to store all data in the cloud encrypted, and perform computations on these encrypted data. Some of the concrete example of such businesses and applications can be found in medical and health care, military and financial sectors, to name a few. Lauter-Naehrig-Vaikuntanathan [cite] have described implementations of simple statistical operations such as mean, standard deviation and logistical regression. Specifically, they make use of Brakerski-Vaikuntanathan [cite] homomorphic encryption scheme in their applications . In another work by Wu-Haven [cite] demonstrate the viability of using leveled homomorphic encryption for large scale statistical analysis on encrypted data. Specifically, they compute the mean and variance of univariate and multivariate data as well as perform linear regression on a multidimensional, encrypted datasets. While both these works show the practical applications and viability of homomorphic encryption, they also avoid the use of bootstrapping procedure in their computation. In other words they compute on a circuit, the depth of which is fixed by the desired application. Moreover, this is primarily done so as to avoid the computationally expensive operation of bootstrapping.
+
+
+\subsection{Prior Works}
+
+It is worth while to mention the pioneering work of Gentry as it paved the foundations of fully homomorphic encryption. Gentry's work starts off with a construction of a new public key encryption scheme based on ideal lattices which provide additive and multiplicative homomorphisms. However, the scheme is homomorphic only for shallow circuits because the ``error'' grows with addition and (especially) multiplication operations; eventually, it becomes so long that it causes a decryption error. The depth of the scheme is logarithmic in the lattice dimension. Formally, the public key encryption scheme $\varepsilon$ is defined by four algorithms $KeyGen_{\varepsilon}$, $Encrypt_\varepsilon$, $Decrypt_\varepsilon$, and an additional algorithm $Evaluate_\varepsilon$. The $Evaluate_\varepsilon$ algorithm takes in the public key ( generated by $KeyGen_{\varepsilon}$ ) and a circuit $C$ from the family of circuits $C_\varepsilon$, and a tuple of ciphertexts $\Psi = \langle  \psi_1,\psi_2, \cdots ,\psi_t \rangle$; it outputs a ciphertext $\psi$. 
+
+Correctness of the public key encryption scheme follows if for a set of plaintexts given by $\langle \pi_1, \pi_2, \cdots \pi_t \rangle$ and corresponding ciphertexts given by $\langle \psi_1, \psi_2, \cdots \psi_t \rangle$ then $|Pr\left(Decrypt_\varepsilon\left(\psi_i\right)\neq \pi_i\right)| \approx negl$ for $i \in \left[1,2,\cdots,t\right]$ . Moreover, encryption scheme $\varepsilon$ is correct for the class of circuits in $C_\varepsilon$ if, for any key-pair $(sk, pk)$ output by $KeyGen_\varepsilon\left(1^\lambda\right)$, any circuit $C \in C_\varepsilon$, any plaintexts $\pi_1,\cdots,\pi_t$, and any ciphertexts $\Psi \ = \langle \psi_1,\cdots,\psi_t\rangle$ with $\psi_i \leftarrow Encrypt_\varepsilon\left(pk,\pi_i\right)$, then the following holds true :
+$$\psi \leftarrow Evaluate_\varepsilon\left(pk,C,\Psi\right)$$ 
+$$\Rightarrow C\left(\pi_1,\cdots,\pi_t\right) = Decrypt_\varepsilon\left(sk,\psi\right)$$ 
+
+Security of the Somewhat Homomorphic scheme (SwHE) depends upon the Ideal Coset Problem (ICP). In brief, ICP asks to distinguish between an uniformly generated ideal and the one chosen by sampling from a specific distribution. The ideal coset problem can be reduced to decision version of closest vector problem (CVP) which are conjectured to be intractable and can be solved in $2^{\mathcal{O}^{(n)}}$. It is also worth while to note here that for weak choice of parameters, algorithm like LLL lattice reduction techniques make it feasible to break CVP and hence ICP.
+
+Bootstrapping the initial construction of SwHE is achieved by evaluating the decryption circuit homomorphically. This is still the key idea behind most of the recent homomorphic schemes to achieve fully homomorphic encryption scheme. To achieve bootstrapping or refreshing the ciphertext one needs to follow these steps :
+
+\begin{itemize}
+\item Encrypt the current secret key under a new public key. If $sk_1$ is the current secret key then we can generate the encryption of bits of $sk_1$ under $pk_2$.
+$$\overline{\psi_{1j}} = Encrypt_\varepsilon\left( pk_2,sk_{1j}\right)$$
+
+\item Use the $Evaluate_\varepsilon$ algortihm on the current ciphertext $\psi_1$, new public key $pk_2$ and encryptions of bits of old secret key $sk_{1j}$ to evaluate the decryption circuit. This produces a new ciphertext $\psi_2$ which can be decrypted under the new secret key $sk_2$.
+$$\psi_2 = Evaluate_\varepsilon\left(pk_2, D_\varepsilon, \overline{\psi_{1j}}, \psi_1 \right)$$ 
+$$ \pi = Decrypt_\varepsilon\left(sk_1,\psi_1 \right) = Decrypt_\varepsilon\left(sk_2,\psi_2 \right)$$
+\end{itemize} 
+
+This refreshing procedure is considered successful if the noise in the final ciphertext is lower than that in the initial ciphertext. In Gentry's bootstrapping method the original decryption is transformed  to re-express decryption as a sparse subset vector sum rather than a full matrix-vector product by taking into account an additional hardness assumption. Doing so reduces the depth of homomorphic computation and in turn reduces final noise level in ciphertext. Specifically, the secret key is split into a set of vectors with a hidden sparse subset whose sum is known from a set that is uniform. 
+
+Following Gentry's bootstrapping theorem, Brakerski-Vaikuntanathan [cite] introduced a bootstrapping algorithm based on Learning With Errors with polynomial approximation factors. Bootstrapping theorem states that a scheme that can homomorphically evaluate its family of augmented decryption circuits can be transformed into a leveled fully homomorphic encryption scheme with the same decryption circuit, ciphertext space and public key. Their method uses the Gentry-Sahai-Waters (GSW) cryptosystem (cite) in conjunction with Barrington’s ``circuit sequentialization'' theorem. In particular they convert the decryption algorithm of GSW scheme into an equivalent circuit, the depth of which is found to be of $\mathcal{O}\left(\log N \right)$ where $N = (n+1)\lceil \log q \rceil$, q being the modulus and n the lattice dimension. For converting the decryption algorithm into a circuit they make use of Barrington's theorem which states that every Boolean NAND circuit $\Psi$ that acts on  $\ell$ inputs and has depth d can be computed by a width-5 permutation branching program $\Pi$ of length $4^d$. Given the description of the circuit $\Psi$, the description of the branching program $\Pi$ can be computed in $poly(\ell, 4^d)$ time. 
+
+It can be easily seen that refreshing a ciphertext by this method can lead to large growth of error due to the homomorphic evaluation of the circuit which has large depth. This is partially remedied by using the GSW scheme which has asymmetric growth of noise term. Specifically, when multiplying two
+ciphertexts with noise levels $e_1$ and $e_2$, the noise in the output turns out to be $e_1 + poly(n) .e_2$. This is in contrast to other RLWE based homomorphic schemes where the noise grows as $poly(n)^{depth}$ and a multiplication tree is used to keep the noise to a minimum. To further optimize their scheme a variant of dimension-modulus reduction technique is used. This shrinks the higher noise ciphertext into ones with small noise and optimal lattice parameters. This approach, however, results in very large polynomial runtimes and no known implementations are reported in literature. 
+
+In another work reported on bootstrapping, Gentry-Halevi-Smart [cite] construct a recryption technique that improved upon the homomorphic modular-reduction by working with a modulus of the form $2^r+1$. They also show how to combine their new technique with the SIMD homomorphic computation techniques
+of Smart-Vercauteren and Gentry-Halevi-Smart, to get a bootstrapping method that works in time quasilinear in the security parameter. Applying their methods to BGV cryptosystem they achieve a scheme capable of evaluating its own decryption circuit, making it a FHE scheme. 
+
+BGV cryptosystem is defined over cyclotomic rings of the form $R = \mathbb{Z}_q \left[ X \right]/F\left(X\right)$ for a monic irreducible polynomial $F\left(X\right)$. To control the noise the scheme maintains a chain of moduli, exhausting one at each level of evaluation. The scheme is parameterized by the number of levels it can compute, denoted by L $\left(depth = L\right)$ and  a set of decreasing odd moduli $q_0 \geq q_1 \geq \cdots \geq q_L$, one for each level. The BGV ciphertext is a 2 vector Ring element represented as $\textbf{c} = \left(c_0,c_1\right)$. In general BGV scheme has a plaintext space of $\mathbb{Z}_p$ and a message $m \in \mathbb{Z}_p$ can be encrypted as a ring element $R_p$. However, in this work the authors consider a binary plaintext space of $R_2$. By applying SIMD techniques instead of a single message one encode multiple messages in the plaintext space $R_2$. Secret key $s \in R_q$ are ring polynomials which are drawn from a narrow discrete gaussian distributions $\chi_B$ and have low bounded norms. Decryption proceeds by computing the noise term $\left[ \langle \textbf{c},\textbf{s}\rangle\right]_q = \left[ c_0 - c_1.s\right]_q$ and then taking modulo-2 of the resultant. To sum up message is recovered as, $m = \left[\left[ \langle \textbf{c},\textbf{s}\rangle\right]_q\right]_2$. Message is recovered correctly if the noise term doen't wrap around the modulus q.
+
+One of the key observation made in their approach is that if the ciphertext modulus $q$ is of the form $q = 2^r + 1$ then the decryption can be much simplified. To decrypt the ciphertext in this approach one first computes the noise term coefficients, say $Z = \langle \textbf{c},\textbf{s}\rangle\ mod\ F\left(X\right) mod\ q$. It is assumed that the coefficients are smaller than $q^2$ in magnitude. If z is one of the coefficients of the polynomial Z then $\left[ \left[ z \right]_q\right]_2$ can be computed as $z\langle r\rangle \oplus z\langle 0\rangle $, where $z\langle i\rangle$ is the $i^{th}$ bit of $z$.
+       
+Assuming circular security, individual coefficients of secret key of the last level (w.r.t $q_L$) is kept in encrypted form (w.r.t $q_0 \left(largest\ modulus\right)$). To encrypt the secret key the plaintext space is temporarily lifted to work in modulo $2^{r+1}$ ring polynomial. The packed bootstrapping procedure is completed in the following steps:
+
+\begin{itemize}
+\item Using the encrypted secret key the initial ciphertext is converted into a $q_0$ ciphertext where the polynomial being encrypted is represented as $Z' \in \left( \mathbb{Z}/2^{r+1}\mathbb{Z}\right)\left[X\right]/\Phi_m\left(X\right)$.
+
+\item Next they apply a homomorphic inverse-DFT transformation to get encryption of polynomials that have the coefficients of $Z'$ in their plaintext slots.
+
+\item Since the coefficients of $Z'$ are in plaintext slots, a bit extraction procedure is performed
+on all the slots in parallel. The result is encryption of polynomials that have the coefficients of $a$ in their plaintext slots.
+
+\item Finally, a homomorphic DFT transformation is applied to get back a ciphertext that encrypts the polynomial $a$ itself.
+\end{itemize} 
+
+\subsection{Technical Overview}
+
+We intend to show our work on bootstrapping on a Standard-LWE public key encryption scheme by Brakerski-Vaikuntanathan [cite]. Our work closely follows the work of Ducas-Micciancio. In their work, the symmetric key encryption scheme is parameterized by a dimension $n$, a message space $m \in \mathbb{Z}_t$ for t = 4, a ciphertext modulus  $q = n^{\mathcal{O}(1)}$ and a randomized rounding function $\chi \colon \mathbb{R} \rightarrow \mathbb{Z}$. The scheme is further facilitated by conventional LWE features such as modulus reduction and key-switching. 
+
+One of the limitations of their schemes is that they work in modulo-2 domain and hence messages are encrypted as bits. While one can carry out simple operations like homomorphic NOT($\sim$), OR, XOR operations with low noise growth on ciphertext, performing a homomorphic NAND gate operation leads to a ciphertext that can no more be further computed on. At this stage one needs to bootstrap the ciphertext to bring it back into original form. Thus, every time a homomorphic NAND operation is called, the ciphertext has to be restored by bootstrapping. 
+
+In many applications (e.g. financial data, machine learning etc) one needs to work on integer arithmetic rather than binary operations on bits. To further extend the size of the plaintext one can work on a Chinese Remainder Theorem (CRT) based plaintext representation. The LWE scheme of Brakerski-Vaikunthanathan present many such advantages that removes the above discussed limitations. We work on a instance of the scheme by extending the plaintext to $p$( originally defined for $p = 2$). The scheme has a plaintext space for $m \in \mathbb{Z}_p$ for a small $p$. It also incorporates the dimension-modulus reduction technique for noise growth. In brief, one can use this property to evaluate many homomorphic computations (specifically many ciphertext multiplications) before the need to bootstrap. This can be considered one of the significant benefits over the scheme of Ducas-Micciancio. Security of the security is based on the classical hardness of solving standard lattice problems in the worst-case.
+
+One of the serious drawbacks of this scheme is exponential increase in dimension upon homomorphic multiplication. Specifically, the dimension goes up from $n+1$ to roughly $n^2 + n$. At this stage we are required to re-linearize the ciphertext to reduce back the dimension to $n$. While the re-linearization technique is ingenious in restoring the ciphertext dimension it also adds substantial noise to the ciphertext. Keeping a ladder of moduli to tackle the noise growth only seems natural.
+
+Next we describe our approach to refresh the ciphertext to restore the ciphertext to its initial state.
+
+\subsection{Our Approach}
+Our starting point is the standard LWE ciphertext $c$ of the form $c = \left(a,b\right) \in \left[\mathbb{Z}_q^n \times \mathbb{Z}_q\right]$ and a secret key $s$ of the form $s \in \mathbb{Z}_q^n$. Now consider a homomorphic register \textit{HREG} which is capable of holding a finite field element in a small multiplicative group $\mathcal{G}\langle X \rangle$. The homomorphic register \textit{HREG} has the following properties:
+
+\begin{itemize}
+\item \textbf{Initialize}: Given a FF element $a \in \mathbb{Z}_q$ it produces a homomorphic register $HREG_a$.
+
+\item \textbf{Addition}: Given two homomorphic registers $HREG_a$ and $HREG_b$ it produces a homorphic register $HREG_{(a+b)}$ for $(a+b)\in \mathbb{Z}_q$. Addition is achieved by equivalent multiplication in the group $\mathcal{G}\langle X \rangle$.
+
+\item \textbf{Multiplication}: Multiplication is here rather expensive and restrictive. We can only compute the multiplication of registers with finite field elements in the clear. Moreover, it is restrictive in the sense that multiplication can only be computed for registers with published auxiliary register sets. Formally, given a finite field element $a \in \mathbb{Z}_q$ and a auxiliary register set $\kappa_b$ it produces a register $HREG_{ab}$.
+
+\item \textbf{Negation}: In a recent work by Micciancio-Sorrell [cite] showed the register can have a negation operation computed in $\mathcal{O}(1)$ operation with just a minimal memory overhead. Given a homomorphic register $HREG_a$ it produces a register $HREG_{-a}$. 
+\end{itemize}
+
+Initially we evaluate a circuit on the initial ciphertext and when the levels are exhausted we refresh the ciphertext to produce a fresh encryption. To facilitate the bootstrapping we initially pre-compute and publish the auxiliary register set of the secret key elements $s_i$ as $\kappa_{s_i}$.
+
+The decryption is performed as: $$m = \left(b - \langle \textbf{a}\cdot\textbf{s} \rangle\ mod\ q\right) \mod\ p.$$
+
+To perform this decryption homomorphically we compute: $$HREG_b - \sum_{i=0}^{n-1}HREG_{a_i \cdot s_i} =\ HREG_{b - \langle \textbf{a}\cdot\textbf{s} \rangle}$$
+
+This only computes the decryption is $\mathbb{Z}_q$ !!!!!!!!!!!!!!!!!!
+
+
+\section{Preliminaries}
+
+\textbf{Notations}. Let $\mathcal{D}$ denote a distribution over some finite set S. Then, $x \xleftarrow{\$} \mathcal{D}$ is used to denote the fact that x is chosen from the distribution D. When we say $x\xleftarrow{\$} \mathcal{S}$, we simply mean that x is chosen from the uniform distribution over S. Unless explicitly mentioned, all logarithms are to base 2.
+
+In this work, we utilize ``noise" distributions over integers. The only property of these distributions
+we use is their magnitude. Hence, we define a B-bounded distribution to be a distribution
+over the integers where the magnitude of a sample is bounded with high probability. A definition
+follows.
+
+
+\begin{definition}
+
+(B-bounded distributions). A $distribution\ ensemble \ \left\{ \chi_n \right\}_{n \in \mathbb{N}}$ over the integers, is called B-bounded if 
+
+$$\underset{e \ \xleftarrow{\$} \ \chi_n}{Pr} \left[ \left| e\right|> B\right] \leq 2^{-\widetilde{\Omega}\left(n\right)}.$$
+
+We denote scalars in plain (e.g. x) and vectors in bold lowercase (e.g. \textbf{v}), and matrices in bold uppercase (e.g. \textbf{A}).  The $\ell_i$ norm of a vector is denoted by $v_i$. Inner product is denoted by $\langle \textbf{v},\textbf{u} \rangle$, recall that $\langle \textbf{v},\textbf{u} \rangle = \textbf{v}^T \cdot \textbf{u}$. Let \textbf{v} be an n dimensional vector. For all $i = 1,\cdots,n$ the $i^{th} element$ in \textbf{v} is denoted $\textbf{v}[i]$.
+
+\end{definition}
+
+\subsection{Learning With Errors (LWE)}
+
+The LWE problem was introduced by Regev [cite] as a generalization of “learning parity with
+noise”. For positive integers n and $q \geq 2$, a vector $\textbf{s}\in \mathbb{Z}^n_q$, and a probability distribution $\chi$ on $\mathbb{Z}_q$, let $\textbf{A}_{s,\chi}$ be the distribution  obtained by choosing a vector $\textbf{a} \xleftarrow{\$} \mathbb{Z}_q^n$ uniformly at random  and a noise term $e \xleftarrow{\$}\chi$, and outputting $\left(\textbf{a},\langle\textbf{a},\textbf{s}\rangle + e\right) \in \mathbb{Z}_q^n \ \times \ \mathbb{Z}_q$.
+
+\begin{definition}[LWE.]
+ For an integer $q = q(n)$ and an error distribution $\chi = \chi(n)$ over $\mathbb{Z}_q$, the
+learning with errors problem $\textbf{LWE}_{n,m,q,\chi}$ is defined as follows: Given m independent samples from $\textbf{A}_{\textbf{s},\chi} \left(for\ some \ \textbf{s} \in \mathbb{Z}_q^n\right)$, output \textbf{s} with noticeable probability. 
+
+	
+The (average-case) decision variant of the \textbf{LWE} problem, denoted $\textbf{DLWE}_{n,m,q,\chi,}$  is to distinguish (with non-negligible advantage) m samples chosen according to $\textbf{A}_{\textbf{s},\chi}$,( for uniformly random $s\xleftarrow{\$} \mathbb{Z}_q^n$ 
+from m samples chosen according to the uniform distribution over $\mathbb{Z}_q^n \times \mathbb{Z}_q$.  We denote by $\textbf{DLWE}_{n,q,\chi}$ the variant where the adversary gets oracle access to $\textbf{A}_{\textbf{s},\chi}$, and is not a-priori bounded in the number of samples.
+
+
+\end{definition}
+
+\subsection{Ring-LWE}
+Lyubashevsky-Peikert-Regev [cite LPR10] introduced the ring learning with error (RLWE) problem as a means of speeding up cryptographic constructions based on the Learning With Errors problem (LWE) [cite REG05]. Prior to RLWE, Stehlé et al. [SSTX09] introduced what is now referred to as Polynomial Ring Learning With Errors (PLWE), for cyclotomic polynomials of degree a power of 2. PLWE is parametrized by a monic irreducible $f \in \mathbb{Z}[x]$ and integer $q \geq 2 $.
+\subsection{Vector and Polynomial Decomposition}
+
+We define the standard tools used for decomposition of vectors and polynomials which aid in low norm key switching and dimension reduction operations. 
+
+\textbf{Vector Decomposition}: Given vectors $\textbf{x}\left(x_0,x_1,\cdots,x_{n-1}\right) \in \mathbb{Z}_q^n$, $\textbf{y}\left(y_0,y_1,\cdots,y_{n-1}\right)\in \mathbb{Z}_q^n$ and $\textbf{z}\left(z_0,z_1,\cdots,z_{(n-1)\cdot\lfloor \log q \rfloor}\right)\in \mathbb{Z}_q^{n\cdot\lceil \log q \rceil}$ we have the following operations
+
+\begin{itemize}
+\item BitDecomp$\left(\textbf{x}\right)\colon$ It decomposes \textbf{x} into its bit representation vectors. That is, we write $\textbf{x} = \sum_{j=0}^{\lfloor \log q \rfloor} 2^j\cdot\textbf{u}_j,$ where each vector $u_i$ represents the $i^{th}$ bit vector and represented as $u_i = \left( (x_0)_i,(x_1)_i,\cdots,\left(x_{n-1}\right)_i\right)$. The output of the operation is a vector of vectors $\left(u_0,u_1,\cdots,u_{\lfloor \log q \rfloor}  \right)$.
+
+\item Powerof2$\left(\textbf{y}\right)\colon$ It outputs the vector $\left( \textbf{y}, 2\cdot\textbf{y},\cdots,2^{\lfloor \log q \rfloor}\cdot \textbf{y} \right) \in \left(\mathbb{Z}_q^n\right)^{\lceil \log q \rceil}$ 
+
+\item BitDecompInverse$\left(\textbf{z}\right)\colon$ It is the inverse of bit decompose function BitDecomp operation and produces a n-length vector by recombines each of the $\lceil \log q \rceil$ interleaved values. The recombination is given by the algebraic expression $\sum_{i=0}^{\lfloor \log q \rfloor}z_{i\cdot\lceil \log q \rceil}\cdot 2^i$.
+\end{itemize}
+
+The operations are defined here deals with representation of 2's but can be easily extended to any other base p. For the vectors \textbf{x} and \textbf{y} the following property holds true:
+$$\langle \textrm{BitDecomp}\left( \textbf{x},q \right), \textrm{Powerof2}\left( \textbf{y},q \right) \rangle$$
+$$= \sum_{j=0}^{\lfloor \log q \rfloor} \langle 2^j\cdot\textbf{u}_j,\textbf{y}\rangle = \langle \sum_{j=0}^{\lfloor \log q \rfloor} 2^j\cdot \textbf{u}_j,\textbf{y} \rangle = \langle \textbf{x},\textbf{y}\rangle \ \textrm{mod q}$$
+
+Interestingly, these operations can be extended to cyclotomic polynimails where $x,y \in R_q^n$ and vector inner product is replaced by ring multiplication. 
+
+\section{Standard LWE private key scheme}
+
+In this section we discuss the symmetric-key encryption scheme whose security is based on the LWE assumption. The scheme is parameterized by a dimension $n = n(\lambda)$, a plaintext modulus $p \geq 2$ and a ciphertext modulus $q = \mathcal{O}\left(\lambda \right)$ where $\lambda$ is the security parameter.
+
+The construction is quite straightforward, encryption of a message $m \in \mathbb{Z}_p$ under secret key $\textbf{s} \in \mathbb{Z}_q^n$ is
+
+$$c = \left( \textbf{a},b = \langle \textbf{a},\textbf{s}\rangle + p.e + m\right) \in \mathbb{Z}_q^n \times \mathbb{Z}_q $$
+
+Here \textbf{a} is a uniformly generated random vector; $\textbf{a} \xleftarrow{\$} \mathcal{U}_q$. The error $e$ is chosen from a narrow B-bounded Gaussian distribution; $\textbf{e} \xleftarrow{\$} \chi_B $.  
+
+We define decryption as a function which first computes the noise and then reduces it to recover the message $m$. Since, the error is generated by the discrete Gaussian distribution, the noise is interpreted in the interval $\left[ \frac{-q}{2},\frac{q}{2}\right]$ after reducing in mod q. Moreover, decryption is only successful when the noise term doesn't wrap around the ciphertext modulus $q$. Decryption is defined as:
+
+$$noise = \left( b - \langle \textbf{a},\textbf{s}\rangle \right) \ mod \ q $$
+$$ m = noise \ mod \ p$$
+
+ Formally, the basic symmytric scheme $\textrm{SLWE}$ is defined by tuple of PPT algorithms Keygen, Encrypt and Decrypt as follows:
+ 
+ \begin{itemize}
+ 
+ \item SLWE.KeyGen($1^\lambda$): It takes in the security factor $\lambda$ and generates a secret key $\textbf{s} \xleftarrow{\$} \chi_B^n $ from a narrow bounded Gaussian distribution.
+ 
+ \item SLWE.Encrypt$\left( m \in \mathbb{Z}_p, \textbf{s}\right)$: It generates a ciphertext $c = \left( \textbf{a}, b \right)$. The first component $\textbf{a} \xleftarrow{\$} \mathcal{U}_q$ is generated from a n-dimensional uniform random distribution. The next component $b$ is generated by the inner-product of the \textbf{a} and \textbf{s} which in turn assimilates the message along with the error $e$ as per the definition of LWE.   
+ 
+\item SLWE.Decrypt$\left(c = \left(\textbf{a},b\right), \textbf{s}\right)$: Message $m$ is recovered by annihilating the two masks one after the other. First the LWE mask is removed by subtracting the inner-product of \textbf{a} and \textbf{s} from the ciphertext. Then the error mask is destroyed by reducing in modulo-p.
+
+$$m' =\left(  b - \langle \textbf{a},\textbf{s} \rangle \ \textrm{mod q} \right) \ \textrm{mod p}.$$ 
+ \end{itemize}
+ 
+\begin{definition}
+
+The symmetric scheme SLWE is correct if for all $m \in \mathbb{Z}_p$ and all $\textbf{sk} \leftarrow \textrm{SLWE.Keygen}\left( 1^\lambda\right)$,
+
+$$\textbf{Pr}\left[ \textrm{SLWE.}Dec_{sk}\left( \textrm{SLWE.}Encrypt\left( m\right)\right) \neq m \right] = negl\left(\lambda\right).$$
+
+where the probabilities are obtained by repeating the experiments with SLWE.Encrypt and SLWE.Keygen. 
+
+\end{definition}
+
+It is easy to see that Homomorphic addition is achieved by adding the corresponding components of the ciphertext. If we have two ciphertexts $\textrm{SLWE.Encrypt}\left( m_1\right)= c_1 = \left( \textbf{a}_1, b_1 \right) \textrm{and} \ \textrm{SLWE.Encrypt}\left( m_2\right)= c_2 = \left( \textbf{a}_2, b_2 \right)$ then homomorphic addition, SLWE.Add$\left(c_1,c_2\right)$ is given by:
+
+$$c_{add} \leftarrow \textrm{SLWE.Add}(c_1,c_2)$$ $$c_{add}.\textbf{a} = \textbf{a}_1 + \textbf{a}_2\ \colon c_{add}.b = b_1 + b_2\ .$$
+
+Homomorphic addition works because of the linear property of inner products which is:
+$\langle \textbf{a}_1,\textbf{s}\rangle + \langle \textbf{a}_2,\textbf{s}\rangle = \langle \left(\textbf{a}_1 + \textbf{a}_2 \right),\textbf{s}\rangle$ mod-q.
+
+Homomorphic multiplication is not readily achieved because of the non-linear property of inner-product. This is due to the fact that $$\left(\sum a_{1}[i]\cdot s[i]\right)\cdot \left(\sum a_2[i]\cdot s[i]\right) = $$ $$\sum_{i=0}^{n-1} \sum_{j=0}^{n-1} \left(a_1[i]\cdot a_2[j]\right)\left(s[i]\cdot s[j]\right).$$
+
+%To perform homomorphic multiplication we have to use re-linearization techniques as defined in section 2.3.%
+It can be observed that product of the noise terms from the two ciphertexts is approximately equal to the plaintext products of the messages embedded in the ciphertexts.
+$$\left(b_1 - \sum \textbf{a}_1[i]\textbf{s}[i] \right)\cdot \left(b_2 - \sum \textbf{a}_2[i]\textbf{s}[i] \right) = pE + m_1.m_2 \approx m_1.m_2$$
+
+We can leverage the above equation to perform homomorphic multiplication. Assuming circular security, we release the encryption of  $s[i]$ and $s[i][j]$ ($i,j \in [n]$)terms. Specifically, we compute the encryption of powers of a base $b \leq p$ and publish it as EvalMultKey.
+$$\textbf{a}_{2^{\ell}i} \xleftarrow{\$} \mathcal{U}_q ; b_{2^{\ell}i} \leftarrow \langle \textbf{a}_{2^{\ell}i},\textbf{s}\rangle +p.e_{2^{\ell}i} + 2^{\ell}.s[i]$$ 
+$$\textbf{a}_{2^{\ell}i,j} \xleftarrow{\$} \mathcal{U}_q ; b_{2^{\ell}i,j} \leftarrow \langle \textbf{a}_{2^{\ell}i,j},\textbf{s}\rangle +p.e_{2^{\ell}i,j} + 2^{\ell}.s[i]s[j]$$
+$$\ell \in \left\{0,1,\cdots,\lceil \log_p{q} \rceil -1 \right\}$$ 
+$$\textrm{EvalMultKey} \leftarrow \textbf{a}_{2^{\ell}i},\textbf{a}_{2^{\ell}i,j},b_{2^{\ell}i},b_{2^{\ell}i,j}$$
+
+Using EvalMultKey we can evaluate a product $\alpha\cdot s[i] \textrm{ for } \alpha \in \mathbb{Z}_q$. The floowing algorithm describes this procedure.
+\begin{algorithm}
+\caption{Plaintext-Ciphertext product}
+\begin{algorithmic}[1]
+\Procedure{Input:}{$\alpha \in \mathbb{Z}_q$, EvalMultKey$\leftarrow \textbf{a}_{2^{\ell}i}, b_{2^{\ell}i}, \ell \in \left[\lceil \log_p{q} \rceil  \right]$}
+\State Initialize ciphertext $\textbf{a}_{out}\leftarrow 0,b_{out}\leftarrow 0$.
+\State Compute the base-p representation of $\alpha = \sum_{\tau} p^{\tau}\cdot \alpha_\tau$
+\State for $j = \left\{ 0,1,\cdots,\lceil \log_p q\rceil -1 \right\}$ do
+\State \quad if $\alpha_\tau \neq 0$
+\State \quad $a_{out} = a_{out} + a_{2^j,i}; b_{out} = b_{out} + a_{2^j,i}$
+\State end for
+\State return $\left(a_{out},b_{out}\right)$
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+We can write the product of noise of the two ciphertexts as:
+$$\left(b_1 - \sum \textbf{a}_1[i]\textbf{s}[i] \right)\cdot \left(b_2 - \sum \textbf{a}_2[i]\textbf{s}[i] \right)$$
+$$= b_1b_2 - b_1\sum a_{2}[i] - b_2\sum a_{1}[i] + \sum a_1[i]s[i]\sum a_1[i]s[i]$$
+$$= b_1b_2 - \sum s[i]\left(b_1a_{2}[i] + b_2 a_{1}[i]\right) + \sum_i\sum_j\left(a_1[i]a_2[j]\right)\left(s[i]s[j]\right)$$
+$$= b_1b_2 - \sum s[i]h_i + \sum_i\sum_jh_{i,j}\left(s[i]s[j]\right),$$
+where $h_i = \left(b_1a_{2}[i] + b_2 a_{1}[i]\right)$ and $h_{i,j} = \left(a_1[i]a_2[j]\right)$.
+Using the plaintext-ciphertext multiplcation we can further simply the expression to:
+
+$$b_1b_2 - \sum_i \left(b_{h_i,s_i} - \langle \textbf{a}_{h_i,s_i},\textbf{s} \rangle\right) + \sum_{i,j} \left(b_{h_{ij},s_{ij}} - \langle \textbf{a}_{h_{ij},s_{ij}},\textbf{s} \rangle\right)$$
+$$= b_1b_2 + \left(-\sum_i b_{h_i,s_i} + \sum_{i,j} b_{h_{ij},s_{ij}}\right)$$ 
+$$+ \biggl< \left( \sum_i \textbf{a}_{h_i,s_i} - \sum_{i,j}  \textbf{a}_{h_{ij},s_{ij}}\right),\textbf{s}\biggr>$$
+$$= b_{prod} - \langle \textbf{a}_{prod},\textbf{s}\rangle $$
+
+The values of $b_{prod} \textrm{ and } a_{prod}$ can be computed from the ciphertexts $c_1, c_2 \textrm{ and EvalMultKey} $.
+\subsection{Noise Growth Analysis on Ciphertext Multiplication}
+
+To perform ciphertext multiplication ``EvalMult", we make use of the individual coefficients $s[i]$ and pair-wise coefficients $s[i]\cdot s[j]$ of secret key $\textbf{s}$ stored in EvalMultKey. To compute each coefficient $h_i \cdot s[i]$ we add $\lceil \log_p q \rceil$ number of cipertexts indexed from the digit decomposition of $h_i$ in base p. Alternatively, we can write $h_i\cdot s[i] = \left(\lceil \log_p q \rceil\right)\cdot \left(\b - \langle \textbf{a},\textbf{s} \rangle\right) \approx \left(\lceil \log_p q \rceil\right)\cdot p.||e||_\infty$. Taking into account the noise incurred from the pairwise terms $s[i].s[j]$ we can see that the total noise growth on ciphertext multiplication is $\left(n^2 + n\right)\cdot p.||e||_\infty \cdot \left(\lceil \log_p q \rceil\right) \approx \left(n^2 + n\right)\cdot pB \cdot \left(\lceil \log_p q \rceil\right)$.
+
+The noise growth term found in the above expression can be considered as worst-case limit. To arrive at an average case noise growth we use the central limit theorem (CLT). Using CLT we can estimate the noise to grow to be the following:
+$$\sqrt{\left( n^2+n\right)}\cdot pB \cdot \left(\lceil \log_p q \rceil\right) \approx pnB \cdot \left(\lceil \log_p q \rceil\right)$$   
+
+
+\subsection{Modulus Switching}
+
+Modulus switching allows the ciphertext working in modulo-Q to be switched to a ciphertext working with another modulus q. An evaluator can apply the modulus switching technique without the knowledge of secret key \textbf{s}. Typically, we use the rounding function $[\cdot]_{Q:q}:\mathbb{Z}_Q \rightarrow \mathbb{Z}_q$ for modulus switching. The functions is defined as follows:
+$$[x]_{Q:q} = \lfloor x\cdot (q/Q)\rceil$$
+The rounding function is applied to vectors and scalars of the ciphertext coordinatewise and is defined as follows:
+
+$$\textbf{ModSwitch}\left(\textbf{a},b\right) = \left(\left([a_1]_{Q:q},[a_2]_{Q:q}\cdots[a_n]_{Q:q}\right),[b]_{Q:q}\right)$$
+
+\subsubsection{\textbf{Correctness of Modulus Switch}:}
+
+Given two ciphertexts $c = \left(\textbf{a},b\right)$ and $c' = \left(\textbf{a}',b'\right)$ where $c' \leftarrow \textbf{ModSwitch}_{p\leftarrow q}\left(\textbf{a},b\right)$ and two modulii p and q then:
+
+$$\textbf{Pr}\left[ \textbf{SLWE.Decrypt} \left( c = \left(\textbf{a},b\right)\right)\neq \textbf{SLWE.Decrypt} \left( c' = \left(\textbf{a}',b'\right)\right) \right]$$
+$$=negl(\lambda)$$
+
+where the probability is defined over random coins of encryptions of $c \in$ SLWE.
+
+\subsection{Key Switching}
+
+Key switching is a homomorphic operation of transforming a ciphertext encrypted under a key (original  key) into another ciphertext under a new key and preserving the message. Suppose, we have ciphertext $c$ encrypting $m$ under the secret key $\textbf{s}$ then we can transform the ciphertext $c$ into another ciphertext $c'$ encrypting message $m$ under a new key $\textbf{t}$.  The key switching procedure is parametrized by a base $p_{ks}$, and requires the holder of the secret key to publish a evaluation key called ``KeySwitchHint".
+
+The KeySwitchHint is a container that holds all possible encryptions of powers of secret key $p_{ks}^i\cdot t[i]$ for $i \in \left[\lceil \log_{p_{ks}} q \rceil \right]$ and \textbf{t} being the new secret key. The ciphertext $c$ encrypting the message $m$ under secret key \textbf{s} is of the form $\left( c = (a,b)\right)$ where $b = \sum_i a[i].s[i] + pe +m$. For every $a[i]$ we can compute a encryption of $a[i]s[i]$ using the digits of $a[i]$ in base-$p_{ks}$ representation. Algorithm-2 explains this procedure in detail. 
+
+Suppose, we have the ciphertexts $c_{a_is_i} = \left( a_{a_is_i},b_{a_is_i}\right)$ then we can re-write the decryption equation as follows:
+
+$$ m = \left(b - \left[\sum_i b_{a_is_i}-\langle \textbf{a}_{a_is_i},\textbf{t}\rangle\right] \textrm{ mod q}\right)\textrm{mod p}$$
+
+$$\Rightarrow m = \left(\left(b - \sum_i b_{a_is_i}\right) + \biggl< \sum_i \textbf{a}_{a_is_i},\textbf{t} \biggr> \textrm{ mod q}\right)\textrm{mod p}$$
+
+$$b' = \left(b - \sum_i b_{a_is_i}\right); \textbf{a}' = -\sum_i \textbf{a}_{a_is_i}$$
+
+Hence, we arrive at a new ciphertext $c' = \left(\textbf{a'},b'\right)$ which can be decrypted by the new secret key \textbf{t}.
+
+\begin{algorithm}
+\caption{GetCiphertext$\left( m = a_is_i\right)$}
+\begin{algorithmic}[1]
+\Procedure{Input:}{$a_i \in \mathbb{Z}_q$, KeySwitchHint$\leftarrow \textbf{a}_{2^{\ell}s_i}, b_{2^{\ell}s_i}, \ell \in \left[\lceil \log_p{q} \rceil  \right]$}
+\State Initialize ciphertext $\textbf{a}_{out}\leftarrow 0,b_{out}\leftarrow 0$.
+\State Compute the base-$p_{ks}$ representation of $a_i = \sum_{\tau} p_{ks}^{\tau}\cdot a_{i\tau}$
+\State for $j = \left\{ 0,1,\cdots,\lceil \log_{p_{ks}} q\rceil -1 \right\}$ do
+\State \quad if $\alpha_\tau \neq 0$
+\State \quad \quad $\textbf{a}_{out} = \textbf{a}_{out} + a_{i\tau}\cdot\textbf{a}_{2^{\tau},s_i}; b_{out} = b_{out} + a_{i\tau}a_{2^\tau,s_i}$
+\State end for
+\State return $\left(\textbf{a}_{out},b_{out}\right)$
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+The size of the KeySwitchHint is $n.\lceil \log_{p_{ks}} q\rceil$ in number of ciphertexts. The noise grows by a factor of $n\lceil \log_{p_{ks}} q\rceil$ upon key switching in worst case. Using central limit theorem heuristics we can say that noise growth factor is roughly equal to $\sqrt{n}\lceil \log_{p_{ks}} q\rceil$
+
+\section{Ring-GSW scheme}
+
+Correctness of homomorphic addition is immediate,
+however it is not that obvious for the homomorphic
+multiplication. It is clear that the multiplication algorithm
+is asymmetric in the input ciphertexts C and D. That
+is, we treat the components of D as a whole, whereas
+the components of C are broken up into their “bit-wise
+decompositions”. This is a “feature” that is inherited from
+the work of BV [7]. It is shown below that this multiplication
+method is correct and gives a slow noise-growth rate.
+
+\appendices
+
+
+
+% use section* for acknowledgment
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Acknowledgments}
+\else
+  % regular IEEE prefers the singular form
+  \section*{Acknowledgment}
+\fi
+
+
+The authors would like to thank countless nights of sleeplessness and mind racking.
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+\bibitem{IEEEhowto:kopka}
+H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+\end{thebibliography}
+
+
+
+
+
+
+\end{document}
+
+
