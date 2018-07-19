@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.12)  18 JUL 2018 13:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.12)  19 JUL 2018 16:27
 entering extended mode
 **"./bootstrapping paper.tex"
 ("bootstrapping paper.tex"
@@ -268,8 +268,7 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 \c@theorem=\count115
 \c@corollary=\count116
 \c@definition=\count117
-
-No file "bootstrapping paper".aux.
+ ("bootstrapping paper.aux")
 \openout1 = `"bootstrapping paper.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 279.
@@ -284,6 +283,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 279.
 LaTeX Font Info:    ... okay on input line 279.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 279.
 LaTeX Font Info:    ... okay on input line 279.
+
 -- Lines per column: 61 (exact).
 ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 279.
@@ -354,13 +354,13 @@ reg-is-ters
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 433--434
+Underfull \hbox (badness 10000) in paragraph at lines 430--431
 \OT1/ppl/b/n/9.53561 Definition 2.1. \OT1/ppl/m/n/9.53561 (B-bounded dis-tri-bu
 -tions). A
  []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 433--434
+Underfull \hbox (badness 1867) in paragraph at lines 430--431
 \OML/cmm/m/it/10 distribution ensemble  [][]$ \OT1/ppl/m/n/9.53561 over the in-
 te-gers, is
  []
@@ -371,127 +371,124 @@ Missing character: There is no ú in font pplr7t!
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ù in font pplr7t!
-Missing character: There is no √ in font pplr7t!
-Missing character: There is no © in font pplr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--464
+Underfull \hbox (badness 10000) in paragraph at lines 468--469
 []\OT1/ppl/b/n/9.53561 Vector De-com-po-si-tion\OT1/ppl/m/n/9.53561 : Given vec
 -tors
  []
 
 
-Underfull \hbox (badness 1668) in paragraph at lines 463--464
+Underfull \hbox (badness 1668) in paragraph at lines 468--469
 [] [] \OMS/cmsy/m/n/10 2 \U/msb/m/n/9.53561 Z[]$\OT1/ppl/m/n/9.53561 , $[] [] \
 OMS/cmsy/m/n/10 2 \U/msb/m/n/9.53561 Z[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 468--469
+Underfull \hbox (badness 10000) in paragraph at lines 473--474
 []\OT1/ppl/m/n/9.53561 Powerof2$[]  [] [] $ It out-puts the vec-tor
  []
 
 [4]
-Overfull \hbox (14.52545pt too wide) detected at line 528
+Overfull \hbox (14.52545pt too wide) detected at line 533
 [] \OMS/cmsy/m/n/10  [] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 pE \OT1/cmr/m/n/10 
 + \OML/cmm/m/it/10 m[]:m[] \OMS/cmsy/m/n/10  \OML/cmm/m/it/10 m[]:m[]
  []
 
 
-Overfull \hbox (12.13324pt too wide) detected at line 556
+Overfull \hbox (12.13324pt too wide) detected at line 561
 \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 b[]b[] \OMS/cmsy/m/n/10   [] \OML/cmm/m/it/1
 0 s\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 i\OT1/cmr/m/n/10 ] [] + [] [] [] []
  []
 
 [5]
 
-LaTeX Warning: Command \b invalid in math mode on input line 569.
+LaTeX Warning: Command \b invalid in math mode on input line 574.
 
 
-Underfull \hbox (badness 2103) in paragraph at lines 577--578
+Underfull \hbox (badness 2103) in paragraph at lines 582--583
 \OT1/ppl/m/n/9.53561 Modulus switch-ing al-lows the ci-pher-text work-ing in
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 583.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 588.
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 583.
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 588.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 583.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 588.
 
-Overfull \hbox (9.29298pt too wide) detected at line 587
+Overfull \hbox (9.29298pt too wide) detected at line 592
 [] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 611--612
+Underfull \hbox (badness 10000) in paragraph at lines 616--617
 []\OT1/ppl/b/n/9.53561 pro-ce-dure \OT1/ppl/m/sc/9.53561 In-put:\OT1/ppl/m/n/9.
 53561 ($\OML/cmm/m/it/10 a[] \OMS/cmsy/m/n/10 2 \U/msb/m/n/9.53561 Z[]$\OT1/ppl
 /m/n/9.53561 , KeySwitchHint$\OMS/cmsy/m/n/10  
  []
 
 
-Underfull \hbox (badness 2057) in paragraph at lines 613--614
+Underfull \hbox (badness 2057) in paragraph at lines 618--619
 [] \OT1/ppl/m/n/9.53561 Com-pute the base-$\OML/cmm/m/it/10 p[]$ \OT1/ppl/m/n/9
 .53561 rep-re-sen-ta-tion of $\OML/cmm/m/it/10 a[] \OT1/cmr/m/n/10 =
  []
 
-Missing character: There is no ‚ in font pplr7t!
-Missing character: There is no Ä in font pplr7t!
-Missing character: There is no ú in font pplr7t!
-Missing character: There is no ‚ in font pplr7t!
-Missing character: There is no Ä in font pplr7t!
-Missing character: There is no ù in font pplr7t!
-Missing character: There is no ‚ in font pplr7t!
-Missing character: There is no Ä in font pplr7t!
-Missing character: There is no ú in font pplr7t!
-Missing character: There is no ‚ in font pplr7t!
-Missing character: There is no Ä in font pplr7t!
-Missing character: There is no ù in font pplr7t!
-[6] [7
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 642--645
 
-] ("bootstrapping paper.aux")
+ []
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
- ) 
+Underfull \hbox (badness 10000) in paragraph at lines 653--655
+
+ []
+
+
+Overfull \hbox (13.76688pt too wide) detected at line 678
+\OML/cmm/m/it/10 C[] \OT1/cmr/m/n/10 = []
+ []
+
+[7] [8
+
+] ("bootstrapping paper.aux") ) 
 Here is how much of TeX's memory you used:
- 2807 strings out of 493305
- 44492 string characters out of 3129802
- 112328 words of memory out of 3000000
+ 2809 strings out of 493305
+ 44568 string characters out of 3129802
+ 114328 words of memory out of 3000000
  6328 multiletter control sequences out of 15000+200000
  62549 words of font info for 144 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  31i,13n,31p,1751b,365s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
-}<C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmex10.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cmextra/cmex7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/nitgy/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/nitgy/AppData
-/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/n
-itgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr10.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr5.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/nitgy/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/nitgy/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Use
-rs/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/
-msbm10.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/amsfonts/symbols/msbm7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/Users/nitgy/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/nitgy/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Users/nitgy/AppDa
-ta/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/nitg
-y/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Use
-rs/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb
-><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/zapfding/uzd
-r.pfb>
-Output written on "bootstrapping paper.pdf" (7 pages, 279868 bytes).
+{C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.
+9/fonts/enc/dvips/base/8r.enc}<C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/nitgy/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/nitgy/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Us
+ers/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmmi7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmmi8.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/nitgy/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/nitgy/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/nitgy
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C
+:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmsy8.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/symbols/msbm10.pfb><C:/Users/nitgy/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/nitgy/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/nitgy
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/Use
+rs/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb>
+<C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr
+o8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palat
+ino/uplb8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/ur
+w/palatino/uplr8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/urw/palatino/uplri8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on "bootstrapping paper.pdf" (8 pages, 290640 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 118 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

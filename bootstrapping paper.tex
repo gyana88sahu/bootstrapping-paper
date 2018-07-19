@@ -422,10 +422,7 @@ This only computes the decryption is $\mathbb{Z}_q$ !!!!!!!!!!!!!!!!!!
 
 \textbf{Notations}. Let $\mathcal{D}$ denote a distribution over some finite set S. Then, $x \xleftarrow{\$} \mathcal{D}$ is used to denote the fact that x is chosen from the distribution D. When we say $x\xleftarrow{\$} \mathcal{S}$, we simply mean that x is chosen from the uniform distribution over S. Unless explicitly mentioned, all logarithms are to base 2.
 
-In this work, we utilize ``noise" distributions over integers. The only property of these distributions
-we use is their magnitude. Hence, we define a B-bounded distribution to be a distribution
-over the integers where the magnitude of a sample is bounded with high probability. A definition
-follows.
+In this work, we utilize ``noise" distributions over integers. The only property of these distributions we use is their magnitude. Hence, we define a B-bounded distribution to be a distribution over the integers where the magnitude of a sample is bounded with high probability. A definition follows.
 
 
 \begin{definition}
@@ -455,7 +452,15 @@ from m samples chosen according to the uniform distribution over $\mathbb{Z}_q^n
 \end{definition}
 
 \subsection{Ring-LWE}
-Lyubashevsky-Peikert-Regev [cite LPR10] introduced the ring learning with error (RLWE) problem as a means of speeding up cryptographic constructions based on the Learning With Errors problem (LWE) [cite REG05]. Prior to RLWE, Stehlé et al. [SSTX09] introduced what is now referred to as Polynomial Ring Learning With Errors (PLWE), for cyclotomic polynomials of degree a power of 2. PLWE is parametrized by a monic irreducible $f \in \mathbb{Z}[x]$ and integer $q \geq 2 $.
+A ciphertext in the LWE form suffers from the problem of dimension expansion upon homomorphic evaluation. This not only results in greater computational overhead but adds significant noise growth. To accelerate cryptographic constructions based on the Learning With Errors problem (LWE) Lyubashevsky-Peikert-Regev [cite LPR10] introduced the ring learning with error (RLWE) problem[cite]. Lyubashevsky et al. first showed a quantum reduction from approximate SVP (in the worst case) on ideal lattices in R to the search version of ring-LWE, where the goal is to recover the secret $s \in R_q$ (with high probability, for any s) from arbitrarily many noisy products. They also gave a reduction from
+the search problem to the decision variant, which shows that ring-LWE distribution is pseudorandom assuming worst-case problems on ideal lattices are hard for polynomial-time quantum algorithms.
+
+\begin{definition}[RLWE]
+
+For security parameter $\lambda$, let $f\left(x\right) = x^d +1$ where $d = d(\lambda)$ is a power of 2. Let $q = q(\lambda) \geq 2$ be an integer. Let $R = \mathbb{Z}[x]/\left(f(x)\right)$ and let $R_q = R/qR$. Let $\chi = \chi\left(\lambda\right)$ be a distribution over R.  The $\textrm{RLWE}_{d,q,\chi}$ problem is to distinguish the following two distributions: In the first distribution, one samples $\left( a_i , b_i\right)$ uniformly from $R_q^2$. In the second distribution, one first draws $s \leftarrow R_q$ uniformly and then samples $\left(a_i,b_i\right) \in R_q^2$ by sampling $a_i \leftarrow R_q$ uniformly, $e_i \leftarrow \chi$, and setting $b_i = a_i.s + e_i$. The $\textrm{RLWE}_{d,q,\chi}$ assumption is that the $\textrm{RLWE}_{d,q,\chi}$ problem is infeasible.
+
+\end{definition}
+
 \subsection{Vector and Polynomial Decomposition}
 
 We define the standard tools used for decomposition of vectors and polynomials which aid in low norm key switching and dimension reduction operations. 
@@ -625,15 +630,92 @@ The size of the KeySwitchHint is $n.\lceil \log_{p_{ks}} q\rceil$ in number of c
 
 \section{Ring-GSW scheme}
 
-Correctness of homomorphic addition is immediate,
-however it is not that obvious for the homomorphic
-multiplication. It is clear that the multiplication algorithm
-is asymmetric in the input ciphertexts C and D. That
-is, we treat the components of D as a whole, whereas
-the components of C are broken up into their “bit-wise
-decompositions”. This is a “feature” that is inherited from
-the work of BV [7]. It is shown below that this multiplication
-method is correct and gives a slow noise-growth rate.
+This section describes in depth, the concrete scheme used to instantiate our homomorphic register HREG. The scheme is a ring variant of the original scheme proposed by Gentry-Sahai-Waters(GSW). 
+
+The original scheme is based on the learning with errors (LWE) problem and employs LWE matrices to encrypt a bit. The secret key in the GSW scheme is a low norm vector $s \in \mathbb{Z}_q^n$. A significant outcome of the scheme was to efficiently perform multiplication without relinearization. Other FHE schemes such as BGV, FV etc mostly rely on relinearization approach to perform homomorphic multiplication. To perform relinearization the evaluator also needs to store a set of evaluation keys the number of which is a function in the logarithm of modulus and security parameter $\lambda$. By eliminating the relinearization step the scheme does away with  the need to store large evaluation keys. 
+	
+The ring-GSW scheme is parameterized by a dimension n = n$\left(\lambda\right)$, a ciphertext modulus q = q$\left(\lambda\right)$, a plaintext modulus $p \geq 2$, a B-bounded discrete Gaussian distribution $\chi_{B,R_q}$, a uniform distribution over ring $\mathcal{U}_{q,R_q}$ and $N = 2\ell$ where $\ell = \lceil \log_r q\rceil$ for some $r = 2^k$. Here $r$ is also known as the relinearization window.
+
+The public key encryption scheme is described as follows:
+
+\begin{itemize}
+\item RGSW.Keygen$\left(1^\lambda\right)$: Draw a polynomial ring \textbf{s} from bounded Guassian distribution $\chi_{B,R_q}$. $\textbf{s} \xleftarrow {\$}\chi_{B,R_q}$. Set the secret key vector as:
+$\textbf{sk} \leftarrow [1;\textbf{s}], \textbf{sk} \in R_q^{2\times 1}$. 
+To generate the public key \textbf{pk} we uniformly sample a ring polynomial \textbf{a} from the uniform distribution over rings $\mathcal{U}_{R_q}$. $\textbf{a} \xleftarrow{\$} \mathcal{U}_{R_q}$. To generate the Ring LWE term \textbf{b}, we first generate a small norm ring polynomial \textbf{e} from the $\chi_{B,R_q}$ and set \textbf{b} as follows:\\
+$$e \xleftarrow{\$} \chi_{B,R_q};\quad b = as + pe.$$
+Set the public key $\textbf{pk}$ as:  \[
+\textbf{pk} = A_{1 \times 2} =
+  \begin{bmatrix}
+    b & a
+  \end{bmatrix}
+\]
+
+The noise term generated is similar to that in BGV style encryption and is needed here so as to mimic the noise term of standard LWE encryption scheme.
+\\
+\item RGSW.Encrypt$\left( \textbf{pk},\mu \right)$: The message space here is a polynomial ring in a small modulo p. Technically, one can encode polynomial $\mu \in R_p$ using naive encoding or using the slot encoding, however as it will be clear later that we use naive encoding for only a single coefficient of the polynomial ring. To encrypt a message ring $\mu$ we generate a random vector of polynomial rings \textbf{r} from a ternary distribution $\mathcal{T}_{R_q}$.
+$$\left\{ -1,0,1 \right\} \xleftarrow{\$} \mathcal{T}_{1} \quad \textbf{r} \xleftarrow{\$} \mathcal{T}_{R_q}^N \quad r \in R_q^{N\times 1}, N = 2\ell.$$
+We generate the error vector $\textbf{E}_{N\times 1}$ from the discrete Gaussian distribution $\chi_{B,R_q}^N$, $\textbf{E} \xleftarrow{\$} \chi_{B,R_q}^N$ and set the encryption as follows:
+
+$$C = \mu\cdot\textbf{BDI}\left( I_{N\times N} \right) + \textbf{r}_{N\times 1}\cdot A_{1\times 2} + pE_{N\times 1}$$
+For $r=2$ ciphertext can be visualized as follows:
+
+\[
+C_{N\times 2} =
+  \begin{bmatrix}
+    r_0\cdot b + \mu + pe_0 & r_0\cdot a \\
+    r_1\cdot b + 2\mu + pe_1 & r_1\cdot a \\
+    . & .\\
+    . & .\\
+    . & .\\
+    r_{\ell -1}\cdot b + 2^{\ell -1}\mu + pe_{\ell -1} &  r_{\ell -1}\cdot a\\
+     r_{\ell}\cdot b + pe_{\ell} & r_{\ell}\cdot a + \mu\\
+     r_{\ell + 1}\cdot b + pe_{\ell + 1} & r_{\ell + 1}\cdot a + 2\mu\\
+      . & .\\
+    . & .\\
+    . & .\\
+     r_{2\ell - 1}\cdot b + pe_{2\ell - 1} & r_{2\ell - 1}\cdot a + 2^{\ell - 1}\mu\\
+  \end{bmatrix}
+\]
+
+
+\item RGSW.Decrypt$\left(sk, C\right)$:  Given the ciphertext $C_{N \times 2}$, the plaintext $\mu \in R_q$ is recovered by multiplying the first row of C by the secret key \textbf{sk} as follows:
+
+$${\mu}' = \left[ C_{00} \ \times \ \textbf{sk} \times
+\left[ 
+\begin{smallmatrix} 
+1 & 0\\
+0 & -1  
+\end{smallmatrix}
+\right]
+\textrm{ mod q}\right] \textrm{ mod p }
+$$
+
+$$= \left( r_0\cdot b + \mu + pe_0 \right) - r_0\cdot a \cdot s $$
+
+$$=  r_0\cdot \left(b - a\cdot s\right) + \mu + pe_0 $$
+
+$$=  r_0\cdot e + \mu + pe_0 \equiv \left( \mu \textrm{ mod p } \right) $$
+
+\end{itemize}
+
+\begin{definition}
+
+The public key scheme RGSW is correct if for all $\mu \in R_p$ and all $\textbf{sk} \leftarrow \textrm{RGSW.Keygen}\left( 1^\lambda\right)$ we have,
+
+$$\textbf{Pr}\left[ \textrm{RGSW.}Dec_{sk}\left( \textrm{RGSW.}Encrypt\left( \mu\right)\right) \neq \mu \right] = negl\left(\lambda\right).$$
+
+where the probabilities are obtained by repeating the experiments with RGSW.Encrypt and RGSW.Keygen. 
+
+\end{definition}
+
+\subsection{Homomorphic Operations}
+
+To define homomorphic operations we consider two input ciphertexts $C_{N\times 2}$ and $D_{N\times 2} \in R_q^{N\times 2}$ with respective plaintexts $\mu_1$ and $\mu_2 \in R_p$.
+
+\begin{itemize}
+\item RGSW.ADD$\left(C,D\right)$: To add the two ciphertexts $C_{N\times 2}$ and $D_{N\times 2}$ we add them component-wise, and output the sum $C_{N\times 2} + D_{N\times 2}$. The cost of addition is simply $N$ ring additions.
+\item RGSW.MULT$\left(C,D\right)$: To multiply the two ciphertexts $C_{N\times 2}$ and $D_{N\times 2}$ we compute the bit decomposition of the ciphertext $C$ and multiply it with $D$. That is we simply output $BD\left(C\right)\cdot D.$
+\end{itemize}
 
 \appendices
 
