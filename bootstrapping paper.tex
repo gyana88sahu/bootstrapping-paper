@@ -717,8 +717,31 @@ To define homomorphic operations we consider two input ciphertexts $C_{N\times 2
 \item RGSW.MULT$\left(C,D\right)$: To multiply the two ciphertexts $C_{N\times 2}$ and $D_{N\times 2}$ we compute the bit decomposition of the ciphertext $C$ and multiply it with $D$. That is we simply output $BD\left(C\right)\cdot D.$
 \end{itemize}
 
-\appendices
+\subsection{Correctness of Homomorphic Multiplication and Noise-Growth}
 
+The noise growth of homomorphic multiplication can be seen upon the analysis of the correctness of the decrypted plaintext.  
+
+\begin{equation*}
+\begin{split}
+\textrm{M}_{N\times 2} & = \textbf{BD}\left(C\right)\cdot D\\
+\end{split}
+\end{equation*}
+
+Noise growth can be shown by considering only the first row of M$_0$
+
+
+\section{Bootstrapping Procedure}
+
+In this section we describe the bootstrapping procedure to refresh the SLWE ciphertext. We use a homomorphic register \textbf{HREG} as a core structure for holding an encrypted SLWE ciphertext. Concretely, we utilize the ring GSW scheme for instantiating the register \textbf{HREG}.
+
+\section{Software Implementation in Palisade Library and Results}
+We implemented the SLWE bootstrapping scheme in a general purpose multi-threaded C++ library. We design this library to be modular and provide three major software layers, each of which includes a collection of C++ classes to provide encapsulation, low inter-module coupling and high intra-module cohesion. The software layers are the (1) cryptographic primitives,
+(2) lattice constructs, and (3) arithmetic (primitive math) layers.
+
+\begin{itemize}
+\item The bottom layer is the primitives layer which contains the 
+\end{itemize}
+\appendices
 
 
 % use section* for acknowledgment
@@ -731,7 +754,6 @@ To define homomorphic operations we consider two input ciphertexts $C_{N\times 2
 \fi
 
 
-The authors would like to thank countless nights of sleeplessness and mind racking.
 
 
 % Can use something like this to put references on a page
