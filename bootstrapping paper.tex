@@ -664,15 +664,15 @@ C_{N\times 2} =
   \begin{bmatrix}
     r_0\cdot b + \mu + pe_0 & r_0\cdot a \\
     r_1\cdot b + 2\mu + pe_1 & r_1\cdot a \\
-    . & .\\
-    . & .\\
-    . & .\\
+    \cdot & \cdot\\
+    \cdot & \cdot\\
+    \cdot & \cdot\\
     r_{\ell -1}\cdot b + 2^{\ell -1}\mu + pe_{\ell -1} &  r_{\ell -1}\cdot a\\
      r_{\ell}\cdot b + pe_{\ell} & r_{\ell}\cdot a + \mu\\
      r_{\ell + 1}\cdot b + pe_{\ell + 1} & r_{\ell + 1}\cdot a + 2\mu\\
-      . & .\\
-    . & .\\
-    . & .\\
+    \cdot & \cdot\\
+    \cdot & \cdot\\
+    \cdot & \cdot\\
      r_{2\ell - 1}\cdot b + pe_{2\ell - 1} & r_{2\ell - 1}\cdot a + 2^{\ell - 1}\mu\\
   \end{bmatrix}
 \]
@@ -719,7 +719,7 @@ To define homomorphic operations we consider two input ciphertexts $C_{N\times 2
 
 \subsection{Correctness of Homomorphic Multiplication and Noise-Growth}
 
-The noise growth of homomorphic multiplication can be seen upon the analysis of the correctness of the decrypted plaintext.  
+The noise growth of homomorphic multiplication can be seen from the following equations:
 
 \begin{equation*}
 \begin{split}
@@ -727,16 +727,83 @@ The noise growth of homomorphic multiplication can be seen upon the analysis of 
 \end{split}
 \end{equation*}
 
-Noise growth can be shown by considering only the first row of M$_0$
+Noise growth can be shown by considering only the first row of M$_0 = \left[ M_{00} \ M_{01} \right]$. By property of matrix multiplication we only need to consider only the first row of \textbf{C} and ciphertext D. Let the first row of ciphertext C, i.e. $\left[ C_{00} \ C_{01} \right]$ be given as follows:
+$$ C_{00} = \alpha = r_0'\cdot b + \mu_1 + pe_0'; \quad C_{01} = \beta = r_0'\cdot a$$
 
+Then, bit decomposition of $C_0$ is shown as follows:
+$$\textbf{BD}\left(C_{00}\right) = \left[ \alpha_0,\alpha_1,\cdots ,\alpha_{\ell-1},\beta_0,\beta_1,\cdots,\beta_{\ell-1}\right]$$
 
+Let the ciphertext D be given as below:
+\[
+D =
+  \begin{bmatrix}
+    r_0\cdot b + \mu + pe_0 & r_0\cdot a \\
+    \cdot & \cdot \\
+    \cdot & \cdot \\
+  	\cdot & \cdot \\      
+     r_{2\ell - 1}\cdot b + pe_{2\ell - 1} & r_{2\ell - 1}\cdot a + 2^{\ell - 1}\mu\\
+  \end{bmatrix}
+\]
+
+ 
+
+Then, $M_{00}$ is given as:
+ \begin{align*}
+   M_{00} &= b\cdot\sum_{i=0}^{\ell-1}\left(\alpha_ir_i\right)+ \mu_2\cdot\sum_{i=0}^{\ell-1}\left(\alpha_i2^i\right)+p\sum_{i=0}^{\ell-1}\left(\alpha_ie_i\right)\\ 
+   &+b\cdot\sum_{i=0}^{\ell-1}\left(\beta_ir_{\ell+i}\right)+p\sum_{i=0}^{\ell-1}\left(\beta_ie_{\ell+i}\right)
+   \\
+   &= b\cdot\sum_{i=0}^{\ell-1}\left(\alpha_ir_i\right)+ \mu_2\cdot\alpha+p\sum_{i=0}^{\ell-1}\left(\alpha_ie_i\right)\\ 
+   &+b\cdot\sum_{i=0}^{\ell-1}\left(\beta_ir_{\ell+i}\right)+p\sum_{i=0}^{\ell-1}\left(\beta_ie_{\ell+i}\right)\\
+  \end{align*}
+  
+  $M_{01}$ is given as:
+ \begin{align*}
+   M_{01} & = a\sum_{i=0}^{\ell-1}\left(\alpha_ir_i \right) + a\sum_{i=0}^{\ell-1}\left(\beta_ir_{\ell+i} \right) + \mu_2\cdot\sum_{i=0}^{\ell-1}\left(\beta_i2^i \right)
+   \\
+   &=  a\sum_{i=0}^{\ell-1}\left(\alpha_ir_i \right) + a\sum_{i=0}^{\ell-1}\left(\beta_ir_{\ell+i} \right) + \mu_2\beta
+  \end{align*}
+
+Decryption proceeds by computing $\left[M_{0} \ \times \ \textbf{sk} \times
+\left[ 
+\begin{smallmatrix} 
+1 & 0\\
+0 & -1  
+\end{smallmatrix}
+\right]
+\right] = M_{00}-s\cdot M_{01}.
+$
+
+\begin{align*}
+  M_{00}-s\cdot M_{01} &= \left(b-as\right)\cdot\sum_{i=0}^{\ell-1}\left( \alpha_ir_i+\beta_ir_{\ell+i}\right)+\mu_2\left(\alpha-\beta s\right)\\
+  &+ p\sum_{i=0}^{\ell-1}\left(\alpha_ie_i + \beta_ie_{\ell+i} \right)\\
+  &=pE_1 + \mu_2\left(pe'+\mu_1\right) = pE + \mu_1\mu_2\\
+  &= \mu_1\mu_2 \left( \text{ mod p }\right)
+ \end{align*}
+ 
+\subsection{Faster multiplication in EVALUATION mode using NTT}
+We note that our homomorphic register \textbf{HREG} is always present in EVALUATION domain and we avoid going back to COEFFICIENT domain unless it is really required to. A ciphertext is converted from COEFFICIENT to EVALUATION form using the nega-cyclic number theoretic transform NTT and back by inverse NTT$^{-1}$. The following algorithm describes an approach for faster homomorphic multiplication.
+ 
+\begin{algorithm}
+\caption{EvalMult in EVALUATION domain}
+\begin{algorithmic}[1]
+\Procedure{Input:}{$\left( C_{N\times 2},D_{N\times 2}\right)$}
+\State Initialize ciphertext $\textbf{a}_{out}\leftarrow 0,b_{out}\leftarrow 0$.
+\State Compute the base-$p_{ks}$ representation of $a_i = \sum_{\tau} p_{ks}^{\tau}\cdot a_{i\tau}$
+\State for $j = \left\{ 0,1,\cdots,\lceil \log_{p_{ks}} q\rceil -1 \right\}$ do
+\State \quad if $\alpha_\tau \neq 0$
+\State \quad \quad $\textbf{a}_{out} = \textbf{a}_{out} + a_{i\tau}\cdot\textbf{a}_{2^{\tau},s_i}; b_{out} = b_{out} + a_{i\tau}a_{2^\tau,s_i}$
+\State end for
+\State return $\left(\textbf{a}_{out},b_{out}\right)$
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 \section{Bootstrapping Procedure}
 
 In this section we describe the bootstrapping procedure to refresh the SLWE ciphertext. We use a homomorphic register \textbf{HREG} as a core structure for holding an encrypted SLWE ciphertext. Concretely, we utilize the ring GSW scheme for instantiating the register \textbf{HREG}.
 
 \section{Software Implementation in Palisade Library and Results}
-We implemented the SLWE bootstrapping scheme in a general purpose multi-threaded C++ library. We design this library to be modular and provide three major software layers, each of which includes a collection of C++ classes to provide encapsulation, low inter-module coupling and high intra-module cohesion. The software layers are the (1) cryptographic primitives,
-(2) lattice constructs, and (3) arithmetic (primitive math) layers.
+We implemented the SLWE bootstrapping scheme in a general purpose multi-threaded C++ library. We design this library to be modular and provide three major software layers, each of which includes a collection of C++ classes to provide encapsulation, low inter-module coupling and high intra-module cohesion. The software layers are the (1) cryptographic primitives, (2) lattice constructs, and (3) arithmetic (primitive math) layers.
 
 \begin{itemize}
 \item The bottom layer is the primitives layer which contains the 
