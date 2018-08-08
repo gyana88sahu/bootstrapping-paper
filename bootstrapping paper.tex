@@ -713,7 +713,7 @@ where the probabilities are obtained by repeating the experiments with RGSW.Encr
 To define homomorphic operations we consider two input ciphertexts $C_{N\times 2}$ and $D_{N\times 2} \in R_q^{N\times 2}$ with respective plaintexts $\mu_1$ and $\mu_2 \in R_p$.
 
 \begin{itemize}
-\item RGSW.ADD$\left(C,D\right)$: To add the two ciphertexts $C_{N\times 2}$ and $D_{N\times 2}$ we add them component-wise, and output the sum $C_{N\times 2} + D_{N\times 2}$. The cost of addition is simply $N$ ring additions.
+\item RGSW.ADD$\left(C,D\right)$: To add the two ciphertexts $C_{N\times 2}$ and $D_{N\times 2}$ we add them component-wise, and output the sum $C_{N\times 2} + D_{N\times 2}$. The cost of addition is simply $2N$ ring additions.
 \item RGSW.MULT$\left(C,D\right)$: To multiply the two ciphertexts $C_{N\times 2}$ and $D_{N\times 2}$ we compute the bit decomposition of the ciphertext $C$ and multiply it with $D$. That is we simply output $BD\left(C\right)\cdot D.$
 \end{itemize}
 
@@ -727,7 +727,7 @@ The noise growth of homomorphic multiplication can be seen from the following eq
 \end{split}
 \end{equation*}
 
-Noise growth can be shown by considering only the first row of M$_0 = \left[ M_{00} \ M_{01} \right]$. By property of matrix multiplication we only need to consider only the first row of \textbf{C} and ciphertext D. Let the first row of ciphertext C, i.e. $\left[ C_{00} \ C_{01} \right]$ be given as follows:
+Noise growth can be shown by considering only the first row of M$_0 = \left[ M_{00} \ M_{01} \right]$. By property of matrix multiplication we only need to consider the first row of C and ciphertext D. Let the first row of ciphertext C, i.e. $\left[ C_{00} \ C_{01} \right]$ be given as follows:
 $$ C_{00} = \alpha = r_0'\cdot b + \mu_1 + pe_0'; \quad C_{01} = \beta = r_0'\cdot a$$
 
 Then, bit decomposition of $C_0$ is shown as follows:
@@ -737,11 +737,11 @@ Let the ciphertext D be given as below:
 \[
 D =
   \begin{bmatrix}
-    r_0\cdot b + \mu + pe_0 & r_0\cdot a \\
+    r_0\cdot b + \mu_2 + pe_0 & r_0\cdot a \\
     \cdot & \cdot \\
     \cdot & \cdot \\
   	\cdot & \cdot \\      
-     r_{2\ell - 1}\cdot b + pe_{2\ell - 1} & r_{2\ell - 1}\cdot a + 2^{\ell - 1}\mu\\
+     r_{2\ell - 1}\cdot b + pe_{2\ell - 1} & r_{2\ell - 1}\cdot a + 2^{\ell - 1}\mu_2\\
   \end{bmatrix}
 \]
 
@@ -779,21 +779,37 @@ $
   &=pE_1 + \mu_2\left(pe'+\mu_1\right) = pE + \mu_1\mu_2\\
   &= \mu_1\mu_2 \left( \text{ mod p }\right)
  \end{align*}
+
+Correctness of the homomorphic multiplication is contingent upon the error growth in noise term. Decryption succeeds till the noise term is bounded by $\frac{q}{2}$. The two main components that leads to noise growth are as follows:
+\begin{itemize}
+
+\item The first component is the error term generated due to the implicit relinearization and hence called relinearization error. Since, the magnitude of the random vector $r_i$'s are much smaller (as they are generated from a ternary distribution) than that of error vectors $e_i$'s we will consider only $e_i$ error vectors in relinearization error term. 
+
+The relinearization error term is a summation term and hence depends on the bounds of $e_i$'s, i.e. $||e||_{\ell_1}$ and the relinearization index r. Here we consider $\ell_1$ norm as a means to quantify the noise magnitude. The number of summation terms is given by $\ell = \lceil \log_r{q} \rceil$. Hence, raising the relinearization index r to a carefully chosen number keeps the ciphertext in a compact form and also mitigates the error growth.
+\\
+\item The second component in the noise term comes directly from the plaintext component of second ciphertext $\mu_2$. Moreover, the error term vanishes if $\mu_2 = 0$. This makes the ciphertext error growth asymmetric. 
+
+Generally, in most RLWE schemes the error growth is symmetric and to avoid exponential growth of noise one has to use a binary tree for multiplication. However, with RGSW's symmetric noise growth there is no need of performing multiplication through a binary tree.  
+\end{itemize} 
  
 \subsection{Faster multiplication in EVALUATION mode using NTT}
-We note that our homomorphic register \textbf{HREG} is always present in EVALUATION domain and we avoid going back to COEFFICIENT domain unless it is really required to. A ciphertext is converted from COEFFICIENT to EVALUATION form using the nega-cyclic number theoretic transform NTT and back by inverse NTT$^{-1}$. The following algorithm describes an approach for faster homomorphic multiplication.
+We note that our homomorphic register \textbf{HREG} is always present in EVALUATION domain and we avoid going back to COEFFICIENT domain unless it is really required to. A ciphertext is converted from COEFFICIENT to EVALUATION form using the nega-cyclic number theoretic transform, NTT and back by inverse NTT$^{-1}$. The following algorithm describes an approach for faster homomorphic multiplication.
  
 \begin{algorithm}
 \caption{EvalMult in EVALUATION domain}
 \begin{algorithmic}[1]
 \Procedure{Input:}{$\left( C_{N\times 2},D_{N\times 2}\right)$}
-\State Initialize ciphertext $\textbf{a}_{out}\leftarrow 0,b_{out}\leftarrow 0$.
-\State Compute the base-$p_{ks}$ representation of $a_i = \sum_{\tau} p_{ks}^{\tau}\cdot a_{i\tau}$
-\State for $j = \left\{ 0,1,\cdots,\lceil \log_{p_{ks}} q\rceil -1 \right\}$ do
-\State \quad if $\alpha_\tau \neq 0$
-\State \quad \quad $\textbf{a}_{out} = \textbf{a}_{out} + a_{i\tau}\cdot\textbf{a}_{2^{\tau},s_i}; b_{out} = b_{out} + a_{i\tau}a_{2^\tau,s_i}$
+\State Compute BD(C)$\rightarrow C_{N\times N}$
+\State for $C_{i,j}, \ i \in [N], j \in \left\{0,1 \right\}$ do:
+\State \quad $c_{i,j} \xleftarrow{NTT^{-1}} C_{i,j}$
+\State \quad Bit decompose $c_{i,j}$; $\left(\gamma_0,\gamma_1,\cdots \gamma_{\ell-1}\right)\xleftarrow{BD} c_{i,j}$ 
+\State \quad for i in $\left[\ell \right]$ do:
+\State \quad \quad $c_i \xleftarrow{NTT} \gamma_i$
+\State \quad replace $C_{i,j}$ with $c_{0},c_{1},\cdots,c_{\ell-1}$
+\State \quad end for
 \State end for
-\State return $\left(\textbf{a}_{out},b_{out}\right)$
+\State perform matrix-multiplication, M$_{N\times 2} = C_{N \times N}\cdot D_{N \times 2}$ 
+\State return M
 
 \EndProcedure
 \end{algorithmic}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.12)  24 JUL 2018 18:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.12)  8 AUG 2018 17:10
 entering extended mode
 **"./bootstrapping paper.tex"
 ("bootstrapping paper.tex"
@@ -459,12 +459,18 @@ Overfull \hbox (3.3803pt too wide) detected at line 781
  []
 
 
-Underfull \hbox (badness 2057) in paragraph at lines 791--792
-[] \OT1/ppl/m/n/9.53561 Com-pute the base-$\OML/cmm/m/it/10 p[]$ \OT1/ppl/m/n/9
-.53561 rep-re-sen-ta-tion of $\OML/cmm/m/it/10 a[] \OT1/cmr/m/n/10 =
+Underfull \hbox (badness 1895) in paragraph at lines 788--790
+\OT1/ppl/m/n/9.53561 The num-ber of sum-ma-tion terms is given by
  []
 
-[8] ("bootstrapping paper.aux") ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 788--790
+
+ []
+
+[8] [9
+
+] ("bootstrapping paper.aux") ) 
 Here is how much of TeX's memory you used:
  2809 strings out of 493305
  44568 string characters out of 3129802
@@ -473,36 +479,37 @@ Here is how much of TeX's memory you used:
  62549 words of font info for 144 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  31i,17n,31p,1751b,365s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/nitgy/AppData/Local/Programs/MiKTeX 
-2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/nitgy/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/nitgy/A
-ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/
-Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-mi5.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmmi7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmmi8.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/nitgy/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/nitgy/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/nit
-gy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-<C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmsy7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmsy8.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/nitgy/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/nitgy/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/nit
-gy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/U
-sers/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pf
-b><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uh
-vro8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/pal
-atino/uplb8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-urw/palatino/uplr8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/urw/palatino/uplri8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on "bootstrapping paper.pdf" (8 pages, 297505 bytes).
+{C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.
+9/fonts/enc/dvips/base/8r.enc}<C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/nitgy/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/nitgy/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Us
+ers/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmmi7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmmi8.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/nitgy/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/nitgy/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/nitgy
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C
+:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmsy5.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmsy7.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmsy8.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/nitgy/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/
+nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:
+/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvbo8a
+.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic
+/uhvr8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/h
+elvetic/uhvro8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/urw/palatino/uplb8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/urw/palatino/uplr8a.pfb><C:/Users/nitgy/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/urw/palatino/uplri8a.pfb><C:/Users/nitgy/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on "bootstrapping paper.pdf" (9 pages, 307784 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
+ 125 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
